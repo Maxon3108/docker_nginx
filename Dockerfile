@@ -16,6 +16,7 @@ COPY css /var/www/html/css
 COPY img /var/www/html/img
 COPY js /var/www/html/js
 RUN chown -R www-data:www-data /var/www/html && chmod +x /var/www/html/index.html
+#Попытка использовать RUN для изменения конфига, работает
 #RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 CMD ["nginx", "-g", "daemon off;"]
 #Порты для nginx
