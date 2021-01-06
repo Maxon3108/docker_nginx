@@ -4,18 +4,19 @@ MAINTAINER Maxim Antonov <amv@ya.ru>
 RUN apt-get update
 #Install nginx
 RUN apt-get install -y nginx
+RUN mkdir /var/www/html/cat
 #Global env
 ENV nginx_conf_sad /etc/nginx/sites-available/default
-ENV www_html /var/www/html
+ENV www_html /var/www/html/cat
 #copy default to sad
-COPY default ${nginx_conf}
+COPY default ${nginx_conf_sad}
 COPY index.html ${www_html}
-RUN mkdir /var/www/html/css && mkdir /var/www/html/js && mkdir /var/www/html/img
+RUN mkdir /var/www/html/cat/css && mkdir /var/www/html/cat/js && mkdir /var/www/html/cat/img
 #test copy run
-COPY css /var/www/html/css
-COPY img /var/www/html/img
-COPY js /var/www/html/js
-RUN chown -R www-data:www-data /var/www/html && chmod +x /var/www/html/index.html
+COPY css /var/www/html/cat/css
+COPY img /var/www/html/cat/img
+COPY js /var/www/html/cat/js
+RUN chown -R www-data:www-data /var/www/html/cat
 #Попытка использовать RUN для изменения конфига, работает
 #RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 CMD ["nginx", "-g", "daemon off;"]
