@@ -2,8 +2,20 @@ server {
       listen       80;
       server_name  mysite.ru www.mysite.ru;
       location / {
-          root /var/www/html/cat;
+          root /var/www/html;
           index  index.html index.htm;
        }
-     }
 
+      location =/cat {
+          root /var/www/html/cat;
+	  index  index.html index.htm;
+       }
+
+      location ~* \.(gif|jpg|jpeg)$ {
+	  proxy_pass http://python:80
+      }
+
+      location ~ \.php$ {
+	  proxy_pass http://apache:80
+      }
+     }
