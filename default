@@ -12,10 +12,10 @@ server {
        }
 
       location ~* \.(gif|jpg|jpeg)$ {
-	  proxy_pass http://python:80
+	  proxy_pass http://python:80;
       }
 
       location ~ \.php$ {
-	  proxy_pass http://apache:80
+	  proxy_pass http://apache:80;
       }
      }
