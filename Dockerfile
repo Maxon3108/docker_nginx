@@ -22,3 +22,4 @@ RUN chown -R www-data:www-data /var/www/html/cat
 CMD ["nginx", "-g", "daemon off;"]
 #Порты для nginx
 EXPOSE 80 443 
+
